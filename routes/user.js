@@ -350,10 +350,11 @@ router.post('/place-order',verify,async(req,res)=>{
       res.json(response)
       })
    }else if(req.body['payment-method']=='paypal'){
+    response.paypal = true;
     res.json(response)
    }else if(req.body['payment-method']=="wallet"){
     userHelpers.wallet(req.session.user._id,total).then((result)=>{
-      res.json(result)
+      res.json({result})
     })
    }
 

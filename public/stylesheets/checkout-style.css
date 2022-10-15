@@ -113,3 +113,10 @@ body {
     background-color: black;
     color: white;
 }
+
+  .clr {
+    display: none !important;
+  }
+  .sft {
+   display: block !important;
+}

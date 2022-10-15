@@ -405,7 +405,7 @@ module.exports={
            order.Date=orderDate
            
              
-             let status=await order['payment-method']==='COD'?'placed':'pending'
+             let status=await order['payment-method']==='COD'||order['payment-method']==='wallet'||order['payment-method']==='paypal'?'placed':'pending'
              console.log(order['payment-method'])
              let orderObj= {
                 deliveryDetails:{
@@ -548,7 +548,7 @@ module.exports={
                     $inc: { wallet: -total }
                 }).then((result) => {
                     if (result.acknowledged) {
-                        resolve('success')
+                        resolve(true)
                     } else {
                         reject('error')
                     }
