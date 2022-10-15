@@ -1,0 +1,77 @@
+<div class="small-container cart-page">
+  {{#if orders}}
+    <table class="display table table-striped table-dark "  id="tab">
+      <thead>
+        <tr>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Address</th>
+            <th>status</th>
+            <th>View Products</th>
+            <th>Cancel Orders</th>
+            
+        </tr></thead>
+        <tbody>
+        {{#each orders}}
+        <tr>
+
+            <td>
+               {{this.deliveryDetails.date}}
+            </td>
+            <td><small>&#8377;{{this.totalAmount}} </small><br></td>
+
+            
+            <td><span >{{this.deliveryDetails.address}}</span></td>
+            <td id="status{{this._id}}">{{this.status}}
+            </td>
+            <td><a href="/view-order-products/{{this._id}} " class="btn btnadd">View Products</a></td>
+              {{#if cancelled}}
+              <td>Cancelled</td>
+              {{else if Delivered}}
+              <td>Delivered</td>
+              {{else}}
+            <td><a href="/cancel-order/{{this._id}}" class="btn btnadd"> Cancel Order</a></td>
+            {{/if}}
+        </tr>
+        {{/each}} 
+        </tbody>
+    </table>
+    {{else}}
+    <div class="op-container">
+
+    </div>
+    {{/if}}
+</div>
+
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+
+<style>
+  tfoot input {
+        width: 100%;
+        padding: 3px;
+        box-sizing: border-box;
+    }
+</style>
+
+
+<script>
+  $(document).ready(function () {
+    // Setup - add a text input to each footer cell
+    $('#tab tfoot th').each(function () {
+        var title = $(this).text();
+        $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+    });
+ 
+    // DataTable
+    var table = $('#tab').DataTable({
+      dom: 'Bfrtip',
+       
+    });
+});
+</script>
+
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+
+ </script>

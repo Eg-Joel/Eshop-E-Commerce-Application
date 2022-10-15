@@ -1,0 +1,89 @@
+<div class="container-fluid bg">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-6 col-md3 col-lg-3">
+                <form class="form-container LIF" action="/verifyOTP" method="POST">
+                    <div class="form-group">
+                        <h3>Login </h3>
+                        
+                   {{!-- <span style="color: red;">{{msg}}</span> --}}
+                      <label for="otp">OTP</label>
+                      <input type="tel" class="form-control" name="otp" id="otp" aria-describedby="phoneHelp" placeholder="123456" pattern="[0-9]{6}" >
+                     <input type="text" value="{{phone}}" hidden>
+                     <div>Time left = <span id="timer"></span></div>
+                     <div class="mt-1" id="hide-send" style="visibility: hidden;">
+
+                     <button id="regenerateOTP" class="btn btn-warning btn_shadow mt-1" onclick="resendotp('{{this.phone}}')" style="border-radius: 0;" >Resend OTP </button> 
+                     </div>
+                     
+                    </div>
+                    
+                  
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+               
+                  </form>
+            </div>
+        </div>
+       
+        
+    </div>
+
+<script>
+
+  function resendotp(phone) {
+  
+ 
+        $.ajax({
+            url:  "/sendOTP",
+            
+            data: { phone:phone  },
+            method:'post',
+            success: function (data) {
+                swal({ title: "Sweet!", text: "One time password Message is sent again", timer: 2000 });
+            },
+            error: function () {
+                swal({ title: "Error!", text: "We are facing technical error!", type: "error", timer: 2000, confirmButtonText: "Ok" });
+                return false;
+            }
+        });
+
+    }
+</script>
+
+<script>
+  function showdiv(){
+    document.getElementById('hide-send').style.visibility = "visible";
+    
+  }
+</script>
+
+    <script>
+      let timerOn = true;
+
+function timer(remaining) {
+  var m = Math.floor(remaining / 60);
+  var s = remaining % 60;
+  
+  m = m < 10 ? '0' + m : m;
+  s = s < 10 ? '0' + s : s;
+  document.getElementById('timer').innerHTML = m + ':' + s;
+  remaining -= 1;
+  
+  if(remaining >= 0 && timerOn) {
+    setTimeout(function() {
+        timer(remaining);
+    }, 1000);
+    return;
+  }
+
+  if(!timerOn) {
+    // Do validate stuff here
+    return;
+  }
+  
+  // Do timeout stuff here
+ 
+  showdiv()
+}
+
+timer(120);
+    </script>

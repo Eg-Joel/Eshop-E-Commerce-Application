@@ -1,0 +1,55 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: lightgray;
+}
+.container{
+    width: 100%;
+    margin: 0;
+    padding: 0%;
+  }
+.main{
+
+    font-family: 'Poppins', sans-serif;
+}
+.sidebar{
+    position: fixed;
+    background: black;
+    color: white;
+    width: 20vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0%;
+    
+}
+.sidebar a{
+    margin-left: 10px;
+    display: block;
+    color: white !important;
+    padding-bottom: 10px;
+    font-size: 30px;
+    text-decoration: none;
+}
+.sidebar a:hover{
+    color: black !important;
+    background-color: white;
+}
+.card{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+}
+.content{
+    background-color: whitesmoke;
+    margin-top: 70px;
+}
+.row>* {
+    flex-shrink: 0;
+    width: 40%;
+    max-width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-top: var(--bs-gutter-y);
+}

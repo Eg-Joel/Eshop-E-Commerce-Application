@@ -1,0 +1,59 @@
+
+
+<link rel="stylesheet" href="/stylesheets/product-style.css">
+ <div class="container containers1">
+
+        <div class="image-container1 ">
+            <div class="big-image1">
+                <img src="/productimages/{{product._id}}.jpg" alt="" id="zoom" class="zooms">
+                
+            </div>
+
+            <div class="small-images1">
+                <img src="/productimages/{{product._id}}.jpg" alt="">
+                <img src="/productimages/{{product._id}}0.jpg" alt="">
+                <img src="/productimages/{{product._id}}1.jpg" alt="">
+            </div>
+        </div>
+
+        <div class="content1">
+            
+            <h1>{{product.name}}</h1>
+            <div class="review">
+                <span>(4.3)</span>
+                <span class="fa fa-star"></span>
+            </div>
+              <div class="price1">
+                {{#if offerPrice}}
+                <p><span class="off-price">&#8377;{{offerPrice}}/-</span> <span class="org-price">&#8377;{{product.price}}</span>	<span class="offer">&nbsp;{{offer}}%Off</span></p>
+                {{else}}
+                <p>&#8377;{{product.price}}</p>
+                {{/if}}
+            </div>
+            <p>{{product.productdetails}}</p>
+
+
+
+    
+     <button onclick="addToCart('{{product._id}}')">Add to cart</button>
+        </div>
+    </div>
+
+
+<script>
+    $(document).ready(function(){
+        $('.small-images1 img').click(function(){
+            var image=  $(this).attr('src')
+            $('.big-image1 img').attr('src',image)
+        })
+    
+    })
+   
+</script>
+<script>
+  $(document).ready(function () { 
+    $("#zoom").imagezoomsl({  
+      zoomrange: [4, 4]
+    });
+  })
+</script>

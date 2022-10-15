@@ -1,0 +1,45 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+            
+        <a href="#" class="navbar-brand mx-auto d-block text-center  w-25 ">E SHOP</a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        {{!-- <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav">
+                <a href="#" class="nav-item nav-link active ">Mobiles</a>
+                <a href="#" class="nav-item nav-link active">Laptops</a>
+                <a href="#" class="nav-item nav-link active">Accessories</a>
+               
+                
+            </div> --}}
+            
+             
+               
+             
+           
+            
+            <div class="navbar-nav ">
+                {{!-- <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <button type="button" class="btn btn-secondary" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                      </svg></button>
+                </div> --}}
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"> <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="white" class="bi bi-person-fill mx-3" viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                      </svg></a>
+                    <div class="dropdown-menu">
+                       {{#if admin}}
+                        <a href="/admin/logout" class="dropdown-item">logout</a>
+                        {{else}}
+                        <a href="#" class="dropdown-item">not logined</a>
+                        {{/if}}
+                    </div>
+                </div>
+               
+             
+                  
+                  
+            </div>
+            </nav>

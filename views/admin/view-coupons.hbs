@@ -1,0 +1,42 @@
+<section class="container  m-5 home-container">
+  
+      <div class="row ">
+    
+    <section class="category  m-5 mt-5">
+      <div class="row ">
+<div class="col-12 col-sm-6 col-md-4 col-lg-4">
+
+      
+  <form action="/admin/add-coupon" method="post">
+   <h3 style="color: black;">Add Coupons</h3>
+   <input type="text" class="form-control" name="coupon" placeholder="Add coupon..." required>
+      <input type="number" class="form-control" name="offer" placeholder="Offer for coupon..." required>
+      <button type="submit"  class="btn btnadd mt-1 ml-auto mt-2" >Add Coupons</button>
+  </form>
+</div>
+      </div>
+    </section>
+      </div>
+<div class="col-12 col-sm-6 col-md-4 col-lg-4 m-5" >
+      <table class="table mt-5 pl-3">
+        <thead>
+          <tr>
+          <th scop="col" style="width :200px;" >Coupon</th>
+            <th scop="col" style="width :200px;" >Offer</th>
+              <th scop="col"  >options</th>
+              </tr>
+        </thead>
+         <tbody>
+          {{#each coupon}}
+          <tr>
+            <td scop="row">{{this.coupon}}</td>
+            <td scop="row">{{this.offer}}</td>
+            <td>
+              <a href="/admin/delete-coupon/{{this._id}}" onclick="return swal('do you  want to remove')" class="btn btn-danger">Delete</a>
+            </td>
+          </tr>
+          {{/each}}
+         </tbody>
+      </table>
+      </div>
+</section>

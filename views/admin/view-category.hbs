@@ -1,0 +1,71 @@
+<section class="container  m-5 home-container">
+  
+      <div class="row ">
+    {{!-- <a href="/admin/add-category"class=" betaButton mt-1 ml-auto" style="text-decoration: none ; color:black">Add Category</a> --}}
+    <section class="category  m-5 mt-5">
+      <div class="row ">
+<div class="col-12 col-sm-6 col-md-6 col-lg-6">
+
+      
+  <form action="/admin/add-category" method="post">
+ 
+  <label for="category">Add Category</label><br>
+      <input type="text" class="form-control" name="category" placeholder="Add category..." required>
+      <button type="submit"  class="btn btnadd mt-1 ml-auto mt-2" >Add Category</button>
+  </form>
+   <h4>{{message}}</h4>
+  {{#if msg}}
+              
+      <p style="color: red;">{{msg}}</p>
+   
+  {{/if}}
+</div>
+  </div>
+</section>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+     <table id="userTable" class="table table-bordered table-dark m-5 ">
+    <thead>
+      <tr>
+        <th scope="col">Category</th>
+        <th scope="col">Options</th>
+        <th scope="col">Add Offer</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each category}}
+        <tr>
+          <th scope="row">{{this.category}}</th>
+          <td>
+
+            <a href="/admin/edit-category?id={{this._id}}"><button class="btn btn-primary"> edit</button>  </a>
+
+   
+            <a
+              href="/admin/delete-category?id={{this._id}}"
+              onclick="return confirm('Are you  want to remove {{this.category}}')"
+            ><button class="btn btn-danger">delete</button></a>
+          </td>
+
+          <td >
+            {{#if this.offer}}
+
+            <p style="display: inline-block; margin-right: 2rem;">{{this.offer}}%Off</p><a href="/admin/delete-category-offer/{{this._id}}" class="btn btn-danger">Delete offer</a>
+            {{else}}
+            <form class="form-inline  " action="/admin/add-category-offer/{{this.category}}" method="post">
+  
+             <input type="number" class="form-control" id="offer" name="offer" value="{{this.offer}}" style="width: 80px;display:inline-block">
+             <button type="submit" class="btn btn-primary">Add Offer</button>
+            </form>
+            {{/if}}
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  </div>
+  </div>
+  </div>
+</section>

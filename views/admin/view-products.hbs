@@ -1,0 +1,77 @@
+<div class="container-fluid bg home-container mt-5">
+     
+  <!---The end of nav-->
+  <div class="container start mt-3 ">
+   
+    <div class="container ">
+       <div class="btnss mt-3 mb-3">
+         <a href="/admin/add-product" class="btn btn-primary   " style="height: 40px;width:150px">Add Products</a>
+       
+       </div>
+             
+    <div class="row ">
+        {{#if msg}}
+              
+      <p style="color: red;">{{msg}}</p>
+   
+  {{/if}}
+       
+
+  <form action="">
+
+    <input type="text" name="search" id="" placeholder="search">
+    <button type="submit" class="btn btn-secondary" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                      </svg></button>
+  </form>
+
+   <p style="color:red; font-size:1.5rem; font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;text-align:center;">{{edit_msg}}</p>
+   
+<table id="example" class="display table table-striped table-dark mt-5" style="width:100%">
+  
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>category</th>
+                <th>price</th>
+                <th>Image</th>
+                <th>Edit Product Details</th>
+                {{!-- <th>Add Offer</th> --}}
+                <th>Delete Product</th>
+            </tr>
+        </thead>
+        <tbody>
+          {{#each products}}
+            <tr>
+                <td>{{this.name}}</td>
+                
+                 
+      
+          
+     
+                 <td>{{this.category}}</td>
+   
+                
+                <td>{{this.price}}</td>
+                <td><img style="width: 50px;heigth: 50;background:white;" src="/productimages/{{this._id}}.jpg" alt=""></td>
+                <td><a href="/admin/edit-product/{{this._id}}" class="btn btn-primary">Edit</a></td>
+                {{!-- <td>
+                  
+   <form class="form-inline  " action="/admin/add-offer/{{this._id}}" method="post">
+  
+    
+    <input type="number" class="form-control" id="offer" name="offer" style="width: 80px;display:inline-block">
+  
+  
+  <button type="submit" class="btn btn-primary">Add Offer</button>
+</form>
+                  
+                </td> --}}
+                <td><a href="/admin/delete-product/{{this._id}}" class="btn btn-danger" onclick="return confirm('Delete product {{this.name}}?')">Delete</a></td>
+            </tr>
+            {{/each}}
+            </tbody>
+            </table>
+    </div>
+  </div>
+</div>

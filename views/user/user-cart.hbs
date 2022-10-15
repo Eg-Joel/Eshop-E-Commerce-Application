@@ -1,0 +1,182 @@
+
+    <body  >
+        
+   
+
+<div class="small-container cart-page">
+   
+   {{#if products}}
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            {{!-- <th>subtotal</th> --}}
+            <th>Delete</th>
+        </tr>
+        {{#each products}}
+        <tr>
+
+            <td>
+                <div class="cart-info" >
+                    <img  src="/productimages/{{this.product._id}}.jpg" alt="">
+                    <div>
+                        <p>{{product.name}}</p>
+
+                       
+                    </div>
+                </div>
+            </td>
+            <td>
+                {{#if this.product.offerPrice}}
+                <small>&#8377;{{this.product.offerPrice}} </small><span class="org-price">&#8377;{{this.product.price}}</span><br>
+                {{else}}
+
+                 <small>&#8377;{{this.product.price}} </small><br>
+                 {{/if}}
+                </td>
+
+
+            <td>
+               
+                <button class="cart-buttons "  id="neg-btn{{this.product._id}}"   onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}','-1')">-</button>
+               
+                <span id="span{{this.product._id}}" >{{this.quantity}}</span>
+                <button class="cart-buttons "  onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}','1')">+</button>
+            </td>
+            {{!-- <td><span id="subTotal{{this.product._id}}">&#8377;1000</span></td> --}}
+            <td><button class="btn btn-danger" onclick="deleteProduct('{{this.product._id}}','{{this._id}}')">remove</button></td>
+        </tr>
+        {{/each}} 
+    </table>
+
+    <div class="total-price">
+        <table>
+            
+            <tr>
+                <td>total</td>
+                <td>&#8377;<span id="total">{{total}}</span></td>
+            </tr>
+           
+        </table>
+         
+    </div>
+    <div class="place-order">
+        <a href="/place-order"><button class="btn btn-success "> Place Order</button></a>
+    
+    </div>
+    {{else}}
+    <div class="bg-container">
+
+    </div>
+    {{/if}}
+</div>
+
+
+
+<script>
+  
+
+    function changeQuantity(cartId, productId,userId, count) {
+        let quantity = parseInt(document.getElementById('span'+productId).innerHTML)
+        count = parseInt(count)
+        $.ajax({
+            url: '/change-product-quantity',
+            data: {
+               user:userId,
+                cart: cartId,
+                product: productId,
+                
+                count: count,
+                quantity: quantity
+            },
+            method: 'post',
+            success: (response) => {
+                if (response.removeProduct) {
+                    hide()
+                    
+              if( count ==-1 && quantity ==1){
+                    swal({
+        title: "Are you sure?",
+        text: "remove "+name+" from cart",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then(function(){ 
+   location.reload();
+   }
+);
+     
+      }
+                    
+                } else {
+                    document.getElementById('span'+productId).innerHTML = quantity + count
+                    
+                    document.getElementById('total').innerHTML=response.total
+                    
+                    hide()
+                  
+
+            }
+              
+                }
+            
+        })
+
+        
+     function hide(){
+         let quantity = parseInt(document.getElementById('span'+productId).innerHTML)
+         setHIde(quantity)
+         console.log(quantity)
+    }
+
+    function setHIde(quantity){
+        if(quantity==1){
+          document.getElementById('neg-btn'+productId).style.visibility = "hidden";
+          
+        }else{
+            
+            document.getElementById('neg-btn'+productId).style.visibility = "visible";
+          
+        }
+        
+    }
+          
+       
+    }
+</script>
+
+
+<script>
+
+    function deleteProduct(productId,cartId,name){
+    swal({
+        title: "Are you sure?",
+        text: "remove "+name+" from cart",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+            $.ajax({
+                url:'/delete-product',
+                data:{
+                    product:productId,
+                    cart:cartId
+                },
+                method:'post',
+                success:(response)=>{
+                    $('#tr'+productId).remove()
+                    let msg =name+'removed'
+                    $('#delete-msg').html(msg)
+                    location.reload()
+                }
+            })
+        }else{
+
+        }
+    })
+}
+</script>
+ </body>

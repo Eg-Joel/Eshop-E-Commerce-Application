@@ -1,0 +1,76 @@
+<div class="home-container">
+<div class="tableview ">
+  {{#if orders}}
+    <table class="display table table-striped table-dark mt-5"  id="tab">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Address</th>
+             <th>options</th>
+            <th>status</th>
+            <th>Update status</th>
+            
+        </tr>
+        </thead>
+        
+        <tbody>{{#each orders}}
+        <tr>
+         <form action="/admin/set-status/{{this._id}}" method="post">
+            <td>
+               {{this.deliveryDetails.date}}
+            </td>
+            <td><small>&#8377;{{this.totalAmount}} </small><br></td>
+
+            
+            <td><span >{{this.deliveryDetails.address}}</span></td>
+            
+            <td><a href="/view-order-products/{{this._id}} " class="btn btnadd">View Products</a></td>
+            <td >
+                
+                <select name="status" id="status{{this._id}}"  class="betaButton" >
+                 <option value="{{this.status}}">{{this.status}}</option>
+                 <option value="placed">placed</option>
+                 <option value="cancelled">cancelled</option>
+                 <option value="shipped">shipped</option>
+                 <option value="out for delivery">Out for delivery</option>
+                 <option value="Delivered">Delivered</option>
+                </select>
+            
+            </td>
+            <td>
+                {{#if Delivered}}
+                {{this.status}}
+                {{else if cancelled}}
+                {{this.status}}
+                {{else}}
+                <button type="submit" class="btn btnadd">Update status</button>
+                {{/if}}
+                </td>
+            </form>
+        </tr> {{/each}} 
+        </tbody>
+       
+    </table>
+    {{else}}
+    <div class="op-container">
+
+    </div>
+    {{/if}}
+</div>
+</div>
+
+
+
+<script>
+  $(document).ready(function () {
+   
+ 
+    // DataTable
+    var table = $('#tab').DataTable({
+      dom: 'Bfrtip',
+       
+    });
+});
+</script>
+

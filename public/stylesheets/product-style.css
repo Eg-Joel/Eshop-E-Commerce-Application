@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,200;0,300;1,400&family=Oswald&family=Poppins:wght@200;300;400;500;600;800&family=Titillium+Web&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-transform: capitalize;
+    transition: all .2s;
+}
+html{
+  font-size: 62.5%;  
+}
+body{
+ font-family: 'Poppins', sans-serif;
+ background-color: rgb(0, 0, 0);
+}
+.off-price{
+    font-weight: 500;
+}
+.offer{
+    color: #008000;
+}
+.org-price{
+    font-size: 2 rem;
+    font-weight: 400;
+    color: rgba(50, 49, 49, 0.659);
+    text-decoration: line-through;
+}
+.containers1{
+    height: 50rem;
+    width: 90rem;
+    border-radius: .5rem;
+    box-shadow: 0 .5rem 1rem rgba(255, 253, 253, 0.593);
+    display: flex;
+    margin: 10rem auto ;
+    overflow: hidden;
+    background-color: white;
+}
+ .image-container1{
+    width: 50%;
+
+    }
+
+.big-image1{
+        height: 70%;
+        width: 100%;
+        padding: 1rem;
+    }
+.big-image1 img{
+    height: 100%;
+    position: relative;
+    object-fit: cover;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.263);
+ }
+ 
+.small-images1{
+    height: 30%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.small-images1 img{
+    height: 13rem;
+    width: 13rem;
+    object-fit: cover;
+    cursor: pointer;
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.437);
+    border: .1rem solid rgb(0, 0, 0);
+
+}
+.small-images1 img:hover{
+    transform: scale(.9);
+}
+.content1{
+ width: 50%;
+ position: relative;
+ padding: 2em;
+
+}
+.content1 h1{
+    font-size: 4rem;
+    padding-top: 2rem;
+    
+}
+.content1 p{
+    font-size: 2rem;
+    padding: 1rem 0;
+
+}
+
+.review{
+    background-color: #008000;
+    display: inline-block;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 15px;
+    padding: 4px;
+  
+  }
+  .review .fa{
+    counter-reset: #fff;
+  }
+.price1{
+    font-size: 3rem;
+    color: rgb(0, 0, 0);
+    margin-top: 2rem;
+
+}
+
+.content1 button{
+    position: absolute;
+    height: 4rem;
+    width: 16rem;
+    font-size: 1.5rem;
+    bottom: 3rem;right:2rem ;
+    border: 1px solid black;
+    color: #fff;
+    background-color: black;
+    cursor: pointer;
+    box-shadow: 0 .5rem 1rem black;
+
+}
+.content1 button:hover{
+    background-color: white;
+    color: black;
+    box-shadow: 0 .5rem 1rem rgb(255, 255, 255);
+}

@@ -1,0 +1,73 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            
+        <a href="/" class="navbar-brand mx-auto d-block text-center  w-25 ">E SHOP</a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav">
+                <a href="/mobiles" class="nav-item nav-link active ">Mobiles</a>
+                <a href="/laptops" class="nav-item nav-link active">Laptops</a>
+                <a href="/Accessories" class="nav-item nav-link active">Accessories</a>
+               
+                
+            </div>
+            
+             
+               
+             
+           
+            
+            <div class="navbar-nav ">
+                <div class="input-group search">
+                   
+                    <input type="text" class="form-control search" name="searchKey" id="searchBar" placeholder="Search" style="display:inline-block !important;width:77% !important" autocomplete="off">
+                    <button  class="btn btn-secondary " id="search-btn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                      </svg></button>
+                      </form>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"> <svg xmlns="http://www.w3.org/2000/svg" width="35" height="33" fill="white" class="bi bi-person-fill mx-3" viewBox="0 0 16 16">
+                        <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                      </svg></a>
+                    <div class="dropdown-menu">
+                        {{#if user}}
+                         <a href="/user/logout" class="dropdown-item">logout</a>
+                          <a href="/user-profile" class="dropdown-item">Account</a>
+                          {{else}}
+                        <a href="/login" class="dropdown-item">Login</a>
+                       
+                       
+                       {{/if}} 
+                    </div>
+                </div>
+                {{!-- {{#if user}}
+               {{user.name}}
+               {{else}}
+               Account
+               {{/if}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          
+              <a class="dropdown-item btn" href="/logout">Logout</a>
+               
+              --}}
+               
+           
+                        {{#if user}}
+                      
+                        <a href="/cart"><i class="fa nav-item nav-link active" style="font-size:30px; color:white;cursor:pointer">&#xf07a;</i>
+                          </a> <span style="color: white;" id="cart-count" > {{cartCound}} </span>
+
+                    
+               
+                <a href="/wishlist" class="nav-item nav-link active"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="30" fill="white" class="bi bi-heart-fill mx-3" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                  </svg></a>
+            
+             
+                  
+                  {{/if}} 
+            </div>
+            </nav>

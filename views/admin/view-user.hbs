@@ -1,0 +1,49 @@
+<div class="container-fluid bg home-container mt-5">
+  <!---The end of nav-->
+  <div class="container start home-container mt-3">
+    <div class="container ">
+       
+            
+            {{#if msg}}
+              
+      <p style="color: red;">{{msg}}</p>
+   
+  {{/if}}
+       
+    <div class="row ">
+       
+  
+    
+<table id="example" class="display table table-striped table-dark mt-5" style="width:100%">
+     
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Mail id</th>
+                <th>Phone number</th>
+                <th>Block User</th>
+                <th>Delete User</th>
+            </tr>
+        </thead>
+        <tbody>
+          {{# each users}}
+            <tr>
+                <td>{{this.name}}</td>
+                <td>{{this.email}}</td>
+                <td>{{this.phone}}</td>
+                
+            {{#if this.blocked}}
+             <td><a href="/admin/unblock-user?id={{this._id}}"class="btn btn-success">Un Block</a></td> 
+            {{else}}
+              <td><a href="/admin/block-user?id={{this._id}}" class="btn btn-danger">Block</a></td>
+            {{/if}}
+                {{!-- <td><a href="/admin/edit-user/{{this._id}}" class="btn btn-danger">Block</a></td> --}}
+                <td><a href="/admin/delete-user/{{this._id}}" class="btn btn-danger" onclick="return confirm('Delete user{{this.name}}?')">Delete</a></td>
+            </tr>
+            {{/each}}
+            </tbody>
+            </table>
+         
+    </div>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+ 
+     <section>
+        <div class="row justify-content-center ">
+            <div class=" col-12 col-sm-12 col-md-3 col-lg-3">
+                <form class="form-container  SUF" name="SUF" action="/signup" method="POST">
+                    <h4>{{message}}</h4>
+                     <div class="form-group">
+                      <label for="exampleInputEmail1">Name</label>
+                      <input type="text" class="form-control" name="name" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name" required pattern="\S(.*\S)?">
+                     
+                    </div>
+
+                   <div class="form-group">
+                      <label for="exampleInputEmail1">Email</label>
+                      <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$">
+                     
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputphonenumber">Phone Number</label>
+                      <input type="tel" class="form-control" name="phone" id="phone"   placeholder="0123456789" required pattern="[0-9]{10}">
+                     
+                    </div>
+
+                  <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password" minlength="3" required pattern="\S(.*\S)?">
+                   
+                    </div>
+                      <div class="form-group">
+                      <label for="exampleInputreferalnumber">Referal</label>
+                      <input type="text" class="form-control" name="referalCode" id="referal_code"   placeholder="Enter Referal code" >
+                        <span id="error" class="text-danger"></span>
+                    </div>
+
+
+                   {{!-- <div class="form-group">
+                      <label for="exampleInputPassword1">Repeat your password</label>
+                      <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password" minlength="3" required pattern="\S(.*\S)?">
+                   
+                    </div> --}}
+
+                
+
+                  <button type="submit" class="btn btn-primary btn-block">Submit</button>
+
+                
+                                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="/login"
+                                        class="fw-bold text-body"><u>Login here</u></a></p>
+                  </form>
+            </div>
+        </div>
+       </section>
+        
+    

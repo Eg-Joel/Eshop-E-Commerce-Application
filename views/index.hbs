@@ -1,0 +1,130 @@
+<style>
+   .img-height{
+    width: 250px;
+    margin:0 auto;
+  }
+@media screen and (max-width: 1024px) {
+  body{
+    font-size: 50px;
+  }
+
+  .img-height{
+    width: 650px;
+  }
+   .slidee{
+display: none;
+   }
+   
+    
+  }
+</style>
+
+
+<section class="sec">
+   <div class="container">
+           <div class="conatainer slidee">
+   <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          {{!-- <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#555" dy=".3em"></text></svg> --}}
+     <img src="/images/Screenshot (136).png" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="/images/61GO0NKfxxL._SX3000_.jpg" class="d-block w-100" alt="..." >
+    
+        </div>
+        <div class="carousel-item">
+          <img src="images/fbb5e74e1d2ace58.webp" class="d-block w-100" alt="...">
+    
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="category">
+
+    </div>
+  </div>
+</div> 
+          
+      <div class="container  mt-5 ">
+        <div class="row">
+          {{#each products}}
+            <div class="col-lg-3 col-md-12 pb-1 ">
+
+             
+
+           
+                <div class="product-item bg-light mb-4 home-new"> 
+                   {{#if ../user}}
+               
+                 <div class="whish">
+                <button onclick="addToWishList('{{this._id}}')" class="like">
+                     <svg id="btn2" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                </svg>
+                </div>
+                 {{!-- <div class="whish">
+      
+                <button onclick="addToWishList('{{this._id}}')" class="like">
+                 
+                </div> --}}
+            {{/if}}
+                   <a href="/product-page/{{this._id}}" target="_blank" >
+                    <div class="position-relative">
+                        {{!-- class="product-img position-relative overflow-hidden" style="position:relative;" --}}
+                      <div class="img-height">
+                        <img style="object-fit: contain; width: 100%; height: 100%;" src="/productimages/{{this._id}}.jpg" alt="">
+                        {{!-- img-fluid --}}
+                        </div>                       
+                            {{!-- {{#if this.offerPercentage}} --}}
+                            {{!-- <span style="position:absolute;top:6px;right:10px;z-index:10;"><span class="customBadge">{{this.offerPercentage}}% OFF</span></span> --}}
+                            {{!-- {{/if}} --}}
+                    </div> 
+                    <div class="text-center py-4">
+                        <a class="h6 text-truncate productName" href="/product-page/{{this._id}}">{{this.name}}</a>
+                        <div class="d-flex align-items-center justify-content-center mt-2">
+                            {{!-- <h5>&#8377;{{#if this.offerPrice}}{{this.offerPrice}}{{else}}{{this.price}}{{/if}}</h5> --}}
+                            <font>&#8377;{{this.price}}</font>
+                        {{!-- {{#if this.offerPrice}} --}}
+                        {{!-- <s class="oldRate">{{this.price}}</s> --}}
+                        {{!-- {{/if}} --}}
+                        </div>                        
+                        <div class="d-flex align-items-center justify-content-center mb-1">
+                            <span class="customBadge" style="margin:0px 5px;">4.4 <span class="fa fa-star" style="font-size:small;padding:0px; "></span> </span> <small>  (99)</small>
+                            
+                            
+                        </div>
+                    </div>
+                    </a>
+                </div>
+            
+
+
+
+            </div>
+
+          {{/each}}
+        </div>
+      </div>  
+      </div>
+    </section>
+   
+</div>

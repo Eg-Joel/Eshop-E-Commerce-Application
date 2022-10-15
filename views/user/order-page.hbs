@@ -1,0 +1,224 @@
+<link rel="stylesheet" href="/stylesheets/checkout-style.css">
+
+<div class="container">
+    <form class="UFA" action="" id="checkout-form" method="post">
+
+        <div class="row">
+        <div class="col">
+            <h3 style="color: black;">Enter the Deliver Details</h3>
+            <div class="inputbox">
+                <span >Address</span>
+                <textarea name="address" id="address-to" cols="30" rows="10" placeholder="enter the address"></textarea>
+            </div>
+            <div class="inputbox">
+                 <span >City</span>
+                 <input type="text" name="city" id="city-to" placeholder="enter your city">
+            </div>
+            <div class="inputbox">
+                 <span >Area</span>
+                 <input type="text" name="area" id="area-to" placeholder="enter your area">
+            </div>
+             <div class="flex">
+               <div class="inputbox">
+                 <span >State/Region</span>
+                 <input type="text" name="state" id="state-to" placeholder="enter your state">
+                </div>
+            
+                  <div class="inputbox">
+                   <span >Pin-code</span>
+                   <input type="text" name="pin" id="pin-to" placeholder="123-456">
+                   <input type="text" name="userId" value="{{user._id}}" hidden>
+                  </div>
+
+             </div>
+             
+        </div>
+        <div class="col">
+
+
+            
+            <h3 style="color: black;">Payment</h3>
+             
+            <h5>{{#if coupon}}
+                total Amount:<strike>₹{{total}}</strike>₹{{#off total coupon.offer}}{{/off}}
+                {{else}}
+                Total Amount:₹{{total}}/- <strike>₹{{orgiPrice}}</strike>
+                {{/if}}
+                </h5>
+            <hr>{{#each address}}
+            <input type="radio" onclick="clickAddress()" value="{{this.address}},{{ this.city}},{{this.area}}, {{this.state}},{{ this.pin}}">
+                {{this.address}},
+                {{this.city}},
+                {{this.area}},
+                {{this.state}},
+                {{this.pin}}
+                <p class="hide" id="address"> {{this.address}}</p>
+                <p class="hide" id="city"> {{this.city}}</p>
+                <p class="hide" id="area"> {{this.area}}</p>
+                <p class="hide" id="state"> {{this.state}}</p>
+                <p class="hide" id="pin"> {{this.pin}}</p>
+                {{/each}}
+                <style>
+                    .hide{
+                       display: none;
+                    }
+                </style>
+                <hr>
+             <p>payment methods</p>
+           
+                 {{#if gwallet}}
+                  <label for="" class=" radio-inline">
+                    <input type="radio" name="payment-method" value="Wallet" onclick="toggle()" required>Wallet
+                  </label>
+                  {{else}}
+                  <label for="" class=" radio-inline">
+                    <input type="radio" name="payment-method" value="Wallet" onclick="toggle()" disabled>Wallet
+                    <span class="small">   oops !! you dont have enough money in wallet</span>
+                  </label>
+                  {{/if}} 
+                    
+                 <input type="radio" id="COD" name="payment-method" value="COD">
+                 <label for="html">COD</label><br>
+                 <input type="radio" id="razorpay" name="payment-method" value="razorpay" >
+                 <label for="css">Razorpay</label><br>  
+                 <input type="radio" id="paypal" onclick="paypall()" name="payment-method" value="paypal" >
+                 <label for="css">Paypal </label><br> 
+                 {{#if coupon}}
+                 <input type="text" name="coupon" value="{{coupon.offer}}" style="display: none;">
+                 {{/if}}
+                 
+                 <script src="https://www.paypal.com/sdk/js?client-id=Adnec4aDBzFrG5Gxn0XOwKpo2ZmYzyQCgT4mf4YgelpDPBXNPgQS0DQ36pR6Ffb8Rec0Uq3qtptP2tde&currency=USD"
+                 data-namespace="paypal_sdk"></script>
+                 <!-- Set up a container element for the button -->
+
+                 <div id="paypal-button-container" class="pp" style="visibility: hidden !important;"></div>
+                 
+        </div>
+          
+          <button type="submit" class="submit-btn" id="placeorder">checkout</button>
+    </form>
+    <form action="/verifycoupon" method="post">
+                  <label for="add coupon">Add Coupon</label>
+                   <input type="text" class="form-control " name="coupon" placeholder="Add coupon..." >
+                  <button type="submit" class="btn btnad mt-1 mb-3">Add Coupon</button>
+                  </form>
+    </div>
+    
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script src="/javascripts/address.js"></script>
+
+<script>
+    let po = document.getElementById('placeorder')
+    let pp = document.getElementsByClassName('pp')
+    let sample = document.getElementById('sample')
+    pp.onclick = () => {
+     po.click()   
+    }
+      paypal_sdk
+      .Buttons({
+        // Sets up the transaction when a payment button is clicked
+        createOrder: (data, actions) => {
+          return actions.order.create({
+            purchase_units: [{
+              amount: {
+                value: '77.44' // Can also reference a variable or function
+              }
+            }]
+          });
+        },
+        // Finalize the transaction after payer approval
+        onApprove: (data, actions) => {
+          return actions.order.capture().then(function(orderData) {
+            // Successful capture! For dev/demo purposes:
+           // console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+            const transaction = orderData.purchase_units[0].payments.captures[0];
+            alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+            $(document).ready(function () {
+          $("#placeorder").trigger("click");
+        })
+            // When ready to go live, remove the alert and show a success message within this page. For example:
+            // const element = document.getElementById('paypal-button-container');
+            // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+            // Or go to another URL:  actions.redirect('thank_you.html');
+          });
+        }
+      }).render('#paypal-button-container');
+    </script>
+
+<script>
+
+function paypall(){
+    document.getElementById('paypal-button-container').style.visibility = "visible"
+}
+
+
+    //
+    $("#checkout-form").submit((e)=>{
+        console.log('ksfjklsjf')
+        e.preventDefault()
+        $.ajax({
+            url:'/place-order',
+            method:'post',
+            data:$('#checkout-form').serialize(),
+            success:(response)=>{
+                alert(response)
+                if(response.codSuccess){
+                    location.href='/order-success'
+                }else{
+                    razorpayPayment(response)
+                }
+            }
+        })
+    })
+
+function razorpayPayment(order){
+    var options = {
+    "key": "rzp_test_ln0hsvoQxrJBg5", // Enter the Key ID generated from the Dashboard
+    "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "E Shop",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+       
+        verifyPayment(response,order)
+    },
+    "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9999999999"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+ rzp1.open();
+}
+
+function verifyPayment(payment,order){
+    $.ajax({
+        url:'/verify-payment',
+        method:'post',
+        data:{
+            payment,
+            order
+        },
+        success:(response)=>{
+            console.log(response,'iii')
+            if(response.status){
+                location.href = '/order-success'
+            }else{
+                alert('payment failed')
+            }
+        }
+    })
+}
+</script>

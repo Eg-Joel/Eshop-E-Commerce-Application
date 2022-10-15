@@ -1,0 +1,19 @@
+ <div class="container mt-5">
+      <div class="row">
+        
+        {{#each products}}
+        <div class="col-md-3">
+    <div class="card p-5em mt-7" style="width: 14rem;">
+  <img class="card-img-top" style="height:14em"src="/productimages/{{this.product._id}}.jpg" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{product.name}}</h5>
+    <p class="card-text">{{this.product.productdetails}}</p>
+    <p class="card-text">{{this.product.price}}</p>
+    <button class="btn btnadd"  onclick="addToCart('{{this.product._id}}')">add to cart</button>
+    <button class="btn btnadd" onclick=" removeWishList('{{this.product._id}}')">remove</button>
+  </div>
+  </div>
+  </div>
+  {{/each}}
+ 
+  </div>
