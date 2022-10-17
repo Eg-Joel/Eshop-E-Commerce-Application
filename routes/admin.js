@@ -40,7 +40,7 @@ if(req.session.admin){
     productHelpers.get__products__count().then((pcount)=>{
      chartHelper.salesReport().then((data)=>{
 
-     console.log('hi',data.deliveredTotalSale.totalRevenue)
+     
    let totalsales = data.deliveredTotalSale.totalRevenue
    let orders= data.deliveredTotalSale.totalDelivered
     res.render('admin/home',{admin,admin:true,ad:true,totalsales,orders,pcount,count})

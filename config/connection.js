@@ -3,7 +3,7 @@ const state={
     db:null
 }
 module.exports.connect=function(done){
-    const url="mongodb://localhost:27017/mydb"
+    const url='mongodb+srv://joel:6Ku6SRGTSB4elFQO@cluster0.mk8cifj.mongodb.net/?retryWrites=true&w=majority'
     const dbname='eshop'
 
    mongoClient.connect(url,(err,data) =>{
