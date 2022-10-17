@@ -32,6 +32,7 @@ const admins={
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
+  console.log('/admin');
   let admin=req.session.admin
 
 if(req.session.admin){
@@ -46,7 +47,7 @@ if(req.session.admin){
     res.render('admin/home',{admin,admin:true,ad:true,totalsales,orders,pcount,count})
   })
   })
-})
+}).catch((err)=>{console.log(err);})
 }
  else{
   res.render('admin/admin-login',{admin,admin:true})
@@ -92,6 +93,7 @@ router.post('/login', (req, res) => {
 
   if(adminMail==admins.email&&adminPassword==admins.password){
     
+    console.log('login success');
   //  const adminToken = jwt.sign(admin,process.env.ADMIN_TOKEN_SECRET,{expiresIn:'12d'})
   //  res.cookie('adminToken',adminToken,{httpOnly:true})
   
@@ -100,6 +102,7 @@ router.post('/login', (req, res) => {
   // res.render('admin/home',{admin:true,ad:true})
   res.redirect('/admin')
    }else{
+    console.log('login err');
     // res.clearCookie('adminToken')
     res.render('admin/admin-login',{admins,admin:true})
    }
