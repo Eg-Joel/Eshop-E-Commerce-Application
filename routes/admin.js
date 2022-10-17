@@ -34,16 +34,17 @@ const admins={
 router.get('/', function(req, res, next) {
   console.log('/admin');
   let admin=req.session.admin
-
+  console.log('admin',admin);
 if(req.session.admin){
   userhelper.get__users__count().then((count)=>{
-
+    console.log('err1');
     productHelpers.get__products__count().then((pcount)=>{
+      console.log('err2');
      chartHelper.salesReport().then((data)=>{
-
+      console.log('err3');
      
-   let totalsales = data.deliveredTotalSale.totalRevenue
-   let orders= data.deliveredTotalSale.totalDelivered
+   let totalsales = data?.deliveredTotalSale?.totalRevenue
+   let orders= data?.deliveredTotalSale?.totalDelivered
     res.render('admin/home',{admin,admin:true,ad:true,totalsales,orders,pcount,count})
   })
   })
