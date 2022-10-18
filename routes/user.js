@@ -181,7 +181,7 @@ router.get('/sendOTP',(req,res)=>{
   if(req.session.user){
     res.redirect('/')
   }else{
-    
+    console.log('else');
     res.render('user/otpLogin',{ft:true,"loginErr":req.session.userLoginErr})
     req.session.userLoginErr=false
   }
