@@ -147,6 +147,7 @@ router.get('/Accessories',async(req,res)=>{
 
 router.get('/product-page/:id',verify,async(req,res)=>{
   let user=req.session.user
+  console.log('produtpage')
   let cartCound=null
   if(user){
     cartCound=await userHelpers.getCartCound(user._id)
