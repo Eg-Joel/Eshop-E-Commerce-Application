@@ -180,7 +180,7 @@ router.get('/search',(req,res)=>{
 router.get('/sendOTP',(req,res)=>{
 
   try {
-    res.render('user/signup');
+    res.render('user/otplogin');
    
   } catch (err) {
     console.log(err);
