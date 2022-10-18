@@ -13,9 +13,10 @@ const smsKey = process.env.SMS_SECRET_KEY;
 
 exports.sendOTP = (req, res) => {
 try{
-  const phone =req.body.phone
+  console.log('hiiiii')
+  const phone =req?.body?.phone
 userHelpers.sendOTP(phone).then(async(response)=>{
-  const phone=response.phone
+  const phone=response?.phone
   req.session.tempUser=response
 
   const otp=Math.floor(100000+ Math.random() * 900000)
