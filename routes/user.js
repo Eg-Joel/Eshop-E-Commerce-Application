@@ -178,13 +178,15 @@ router.get('/search',(req,res)=>{
 })
 
 router.get('/sendOTP',(req,res)=>{
-  if(req.session.user){
-    res.redirect('/')
-  }else{
-    console.log('else');
-    res.render('user/otpLogin',{loginErr:req?.session?.userLoginErr})
-    req.session.userLoginErr=false
+
+  try {
+    res.render("user/otpLogin");
+  } catch (err) {
+    console.log(err);
+    res.redirect('/error')
   }
+
+ 
 })
 
 
