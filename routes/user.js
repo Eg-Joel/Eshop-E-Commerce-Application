@@ -180,13 +180,20 @@ router.get('/search',(req,res)=>{
 router.get('/sendOTP',(req,res)=>{
 
   try {
-    res.render("user/otpLogin");
+    res.render('user/otpLogin',{loginErr:req?.session?.userLoginErr});
+    req?.session?.userLoginErr=false
   } catch (err) {
     console.log(err);
     res.redirect('/error')
   }
 
- 
+  // if(req.session.user){
+  //   res.redirect('/')
+  // }else{
+  //   console.log('else');
+  //   res.render('user/otpLogin',{loginErr:req?.session?.userLoginErr})
+  //   req.session.userLoginErr=false
+  // }
 })
 
 
