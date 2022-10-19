@@ -147,22 +147,27 @@ router.get('/Accessories',async(req,res)=>{
 
 router.get('/product-page/:id',verify,async(req,res)=>{
   let user=req.session.user
-
+  let id = req.params.id
   let cartCound=null
-  if(user){
-    cartCound=await userHelpers.getCartCound(user._id)
-  }
-  let product=await productHelpers.getProduct(req.params.id)
-  let categoryName = product.category
-  let category = await productHelpers.getCategory(categoryName)
-  
-  let offer  = category.offer
- 
-   productHelpers.getOfferPrice(categoryName,offer)
-   let offerPrice=product.offerPrice
+  if(objectId.isValid(id)){
 
-    res.render('user/product',{product,offerPrice,offer,cartCound,user,userf:true})
+    if(user){
+      cartCound=await userHelpers.getCartCound(user._id)
+    }
+    let product=await productHelpers.getProduct(id)
+    let categoryName = product.category
+    let category = await productHelpers.getCategory(categoryName)
+    
+    let offer  = category.offer
+   
+     productHelpers.getOfferPrice(categoryName,offer)
+     let offerPrice=product.offerPrice
   
+      res.render('user/product',{product,offerPrice,offer,cartCound,user,userf:true})
+    
+  }else{
+    res.redirect('/error')
+  }
 })
 
 router.get('/search',(req,res)=>{
