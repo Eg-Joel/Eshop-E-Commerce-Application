@@ -172,11 +172,13 @@ router.get('/product-page/:id',verify,async(req,res)=>{
 
 router.get('/search',(req,res)=>{
   try {
-    console.log('kol');
-    userHelpers.search(req.query.searchKey).then(asyncdata=>{
-      res.render('index',{data:data})
+    let searchkey = req?.query?.val
+   
+    userHelpers.search(searchkey).then((data)=>{
      
-    })
+      res.json(data);
+     
+    }).catch(()=>{res.redirect('/error')});;
   } catch (error) {
     console.log(error);
   }

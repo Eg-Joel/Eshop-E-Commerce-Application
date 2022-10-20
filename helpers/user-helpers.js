@@ -833,11 +833,12 @@ module.exports={
        
         return new Promise(async (resolve, reject) => {
           try {
-         console.log(val)
-          let data = await db.get().collection(collection.PRODUCT_COLLECTION).find({$text:{$search:val} }).toArray();
-            
+      
+          let data = await db.get().collection(collection.PRODUCT_COLLECTION).find({name:{$regex: new RegExp('^'+val+'.*','i')} }).toArray()
+         
+       
           resolve(data);
-          console.log(data,'llllllllll')
+         
              
         } catch (error) {
             

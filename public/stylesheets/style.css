@@ -489,3 +489,32 @@ justify-content: center;
   color: rgba(50, 49, 49, 0.659);
   text-decoration: line-through;
 }
+.search-div {
+  position: absolute;
+  display: none;
+
+  top: 85px;
+}
+.search-div-active {
+  transition: width 2s, height 4s;
+  width: 90%;
+  justify-self: center;
+  left: 5%;
+  justify-items: center;
+  position: absolute;
+  display: flex;
+  background-color: rgb(113, 113, 113);
+  top: 85px;
+
+  z-index: 4;
+  padding: 10px;
+  border-radius: 30px;
+  box-shadow: 0px 0px 5px 5px rgb(0, 0, 0, 0.2);
+}
+.sec {
+  z-index: -1;
+}
+.sec1 {
+  filter: blur(4px);
+  -webkit-filter: blur(4px);
+}
