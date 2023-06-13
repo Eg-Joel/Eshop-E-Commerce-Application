@@ -78,7 +78,7 @@ router.get('/',async function(req, res, next) {
   if(user){
     cartCound=await userHelpers.getCartCound(user._id)
     wishList = await userHelpers.getWishProd(user._id)
-    wishList = wishList?.products
+    wishList =  wishList && wishList.products;
   }
 
 

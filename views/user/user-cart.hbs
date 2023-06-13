@@ -1,5 +1,5 @@
 
-    <body  >
+ 
         
    
 
@@ -39,9 +39,9 @@
 
             <td>
                
-                <button class="cart-buttons "  id="neg-btn{{this.product._id}}"   onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}','-1')">-</button>
+                <button class="cart-buttons minus "  id="neg-btn{{this.product._id}}"   onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}','-1')">-</button>
                
-                <span id="span{{this.product._id}}" >{{this.quantity}}</span>
+                <span id="span{{this.product._id}}" class="adva" >{{this.quantity}}</span>
                 <button class="cart-buttons "  onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user._id}}','1')">+</button>
             </td>
             {{!-- <td><span id="subTotal{{this.product._id}}">&#8377;1000</span></td> --}}
@@ -75,7 +75,22 @@
 
 
 <script>
-  
+
+    function setHIde(quantity,index){
+        if(quantity==1){
+        mb[index].style.visibility = "hidden";
+          
+        }
+        
+    }
+    let mb = document.querySelectorAll('.minus')
+    let quantityArr = document.querySelectorAll('.adva')
+function loop(){
+    for(var i =0;i < quantityArr.length;i++){
+        setHIde(Number(quantityArr[i].innerHTML),i)
+    }
+}
+loop()
 
     function changeQuantity(cartId, productId,userId, count) {
         let quantity = parseInt(document.getElementById('span'+productId).innerHTML)
@@ -92,6 +107,7 @@
             },
             method: 'post',
             success: (response) => {
+             
                 if (response.removeProduct) {
                     hide()
                     
@@ -144,6 +160,7 @@
           
        
     }
+
 </script>
 
 

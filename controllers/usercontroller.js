@@ -13,7 +13,7 @@ const smsKey = process.env.SMS_SECRET_KEY;
 
 exports.sendOTP = (req, res) => {
 try{
-  console.log('hiiiii')
+
   const phone =req?.body?.phone
 userHelpers.sendOTP(phone).then(async(response)=>{
   const phone=response?.phone
