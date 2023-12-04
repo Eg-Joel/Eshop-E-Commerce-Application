@@ -2,21 +2,25 @@ import { swalClasses } from '../../classes.js'
 import * as dom from '../../dom/index.js'
 
 /**
- * @param {SweetAlert2} instance
+ * @param {SweetAlert} instance
  * @param {SweetAlertOptions} params
  */
 export const renderImage = (instance, params) => {
   const image = dom.getImage()
+  if (!image) {
+    return
+  }
 
   if (!params.imageUrl) {
-    return dom.hide(image)
+    dom.hide(image)
+    return
   }
 
   dom.show(image, '')
 
   // Src, alt
   image.setAttribute('src', params.imageUrl)
-  image.setAttribute('alt', params.imageAlt)
+  image.setAttribute('alt', params.imageAlt || '')
 
   // Width, height
   dom.applyNumericalStyle(image, 'width', params.imageWidth)
