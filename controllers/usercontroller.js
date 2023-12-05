@@ -1,5 +1,5 @@
 const crypto = require("crypto");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const userHelpers=require('../helpers/user-helpers');
 var productHelpers=require('../helpers/product-helpers')
 const jwt = require("jsonwebtoken");
